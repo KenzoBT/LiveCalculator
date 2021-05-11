@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script src="myScript1.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,700&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./calc2.css">
+  </head>
+  <body>
+    <div id="base">
+      <div class="padding"></div>
+      <div id="display">
+        <div id="row3" class="display_row"></div>
+        <div id="row2" class="display_row"></div>
+        <div id="row1" class="display_row" alt="true">0</div>
+      </div>
+      <div class="padding"></div>
+      <div id="buttons">
+        <div id="left_block">
+          <div class="left_square" onclick="display_show(1)">
+            <div class="button_over">1</div>
+          </div>
+          <div class="left_square" onclick="display_show(2)">
+            <div class="button_over">2</div>
+          </div>
+          <div class="left_square" onclick="display_show(3)">
+            <div class="button_over">3</div>
+          </div>
+          <div class="left_square" onclick="display_show(4)">
+            <div class="button_over">4</div>
+          </div>
+          <div class="left_square" onclick="display_show(5)">
+            <div class="button_over">5</div>
+          </div>
+          <div class="left_square" onclick="display_show(6)">
+            <div class="button_over">6</div>
+          </div>
+          <div class="left_square" onclick="display_show(7)">
+            <div class="button_over">7</div>
+          </div>
+          <div class="left_square" onclick="display_show(8)">
+            <div class="button_over">8</div>
+          </div>
+          <div class="left_square" onclick="display_show(9)">
+            <div class="button_over">9</div>
+          </div>
+          <div class="left_square">
+            <div id="dot" class="button_over_half" onclick="display_show(-1)">.</div>
+            <div class="button_over_half" style="border: none; justify-content: space-between;">
+              <div class="button_over_quart" onclick="operator('(')">(</div>
+              <div class="button_over_quart" onclick="operator(')')">)</div>
+            </div>
+          </div>
+          <div class="left_square" onclick="display_show(0)">
+            <div class="button_over">0</div>
+          </div>
+          <div class="left_square">
+            <div id="expo" class="button_over_half" onclick="operator('＾')">＾</div>
+            <div id="radi" class="button_over_half" style="font-size: 4vh; color: #a0a0a0;" onclick="operator('s')">√</div>
+          </div>
+        </div>
+        <div id="right_block">
+          <div class="right_square" onclick="reset_disp()">
+            <div class="button_over" style="font-size: 3.5vh;">C</div>
+          </div>
+          <div class="right_square" onclick="operator('+')">
+            <div class="button_over">+</div>
+          </div>
+          <div class="right_square" onclick="operator('-')">
+            <div class="button_over">-</div>
+          </div>
+          <div class="right_square" style="font-size: 2.5vh" onclick="operator('?')">
+            <div class="button_over">neg</div>
+          </div>
+          <div class="right_square" onclick="operator('×')">
+            <div class="button_over">×</div>
+          </div>
+          <div class="right_square" onclick="operator('÷')">
+            <div class="button_over">÷</div>
+          </div>
+          <div class="right_enter" id="enterButton">
+            <div class="enter_over">=</div>
+          </div>
+        </div>
+      </div>
+      <div id="rad_help" style="visibility: hidden;">
+        <input id="left_rad" type='text' size=2></input>&nbsp;√&nbsp;<input id="right_rad" type='text' size=2></input>&nbsp;&nbsp;&nbsp;<input type='button' id='sender' onclick="sub_rad()"></input>
+      </div>
+    </div>
+    <div id="memoryTable">
+      <div class="memoryCell" id="m1"></div>
+      <div class="memoryCell" id="m2"></div>
+      <div class="memoryCell" id="m3"></div>
+      <div class="memoryCell" id="m4"></div>
+      <div class="memoryCell" id="m5"></div>
+    </div>
+    <div id="ans" hidden>1</div>
+    <div id="rad_on" hidden>0</div>
+    <div id="bracket_register" hidden></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io()
+      var button = document.querySelector("#enterButton")
+
+      socket.on('refresh cells', (data) => {
+        for(let i = 0; i < data.length; i++){
+          document.getElementById("m" + (i+1)).innerHTML = data[i]
+        }
+      })
+
+      button.addEventListener('click', function(e) {
+        e.preventDefault()
+        exp_parser()
+        exp = document.querySelector("#row2").innerHTML;
+        ans = document.querySelector("#row1").innerHTML;
+        socket.emit('add exp', (exp + " = " + ans))
+      })
+    </script>
+  </body>
+</html>

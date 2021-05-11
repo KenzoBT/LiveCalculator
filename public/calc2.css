@@ -1,0 +1,257 @@
+body{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+  background-color: #101010;
+  color: #a0a0a0;
+}
+
+#memoryTable {
+  margin: 0 0 20px 0;
+  height: 20vh;
+  width: calc(80vh * 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.memoryCell {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+}
+
+#base{
+  margin: 20px;
+  height: 80vh;
+  width: calc(80vh * 0.6);
+  font-size: 5vh;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 200;
+  border-radius: 5vh;
+  border-color: #a0a0a0;
+  border-width: 0.5vh;
+  border-style: solid;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.padding{
+  height: 4%;
+  width: 90%;
+}
+
+#display{
+  height: 20%;
+  width: 80%;
+  border-radius: 1vh;
+  border-color: #a0a0a0;
+  border-width: 0.2vh;
+  border-style: dotted;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Rubik';
+  font-size: 4.2vh;
+}
+
+.display_row{
+  height: 33.3%;
+  width: 90%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#buttons{
+  height: 60%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+#rad_help{
+  height: 10%;
+  width: 80%;
+  border-radius: 2vh;
+  border-style: dashed;
+  border-width: thin;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0a0a0;
+  font-size: 3vh;
+}
+
+#left_block{
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#right_block{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.left_square{
+  height: 25%;
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.right_square{
+  height: 12.5%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right_enter{
+  height: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_over{
+  height: 90%;
+  width: 90%;
+  border-radius: 2vh;
+  border-style: dashed;
+  border-width: 0.2vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_over:hover{
+  font-weight: bold;
+  color: #d0d0d0;
+}
+
+.button_over_half{
+  height: 45%;
+  width: 90%;
+  border-radius: 2vh;
+  border-style: dashed;
+  border-width: 0.2vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#dot:hover{
+  font-weight: bold;
+  color: #d0d0d0;
+}
+
+#expo:hover{
+  font-weight: bold;
+  color: #d0d0d0;
+}
+
+#radi:hover{
+  font-weight: bold;
+  color: #d0d0d0;
+}
+
+.button_over_quart{
+  height: 100%;
+  width: 48%;
+  border-radius: 2vh;
+  border-style: dashed;
+  border-width: 0.2vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5vh;
+}
+
+.button_over_quart:hover{
+  font-weight: bold;
+  color: #d0d0d0;
+}
+
+.enter_over{
+  height: 95%;
+  width: 90%;
+  border-radius: 2vh;
+  border-style: dashed;
+  border-width: 0.2vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.enter_over:hover{
+  font-weight: bold;
+  color: #d0d0d0;
+}
+
+#row2{
+  color: rgba(255,255,255,0.5);
+}
+#row3{
+  color: rgba(255,255,255,0.1);
+}
+
+#sender{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10vh;
+  height: 50%;
+  width: 10%;
+}
+
+#left_rad{
+  background-color: #303030;
+  border-radius: 2vh;
+  border-width: 0.2vh;
+  text-align: center;
+  height: 50%;
+  width: 18%;
+  color: white;
+  font-size: 4vh;
+}
+
+#right_rad{
+  background-color: #303030;
+  border-radius: 2vh;
+  border-width: 0.2vh;
+  text-align: center;
+  height: 50%;
+  width: 18%;
+  color: white;
+  font-size: 3.5vh;
+}
