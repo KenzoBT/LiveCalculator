@@ -19,7 +19,7 @@ body{
 }
 
 #ipTable {
-  width: 50%;
+  width: 20%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@ body{
 }
 
 #memoryTable {
-  width: 50%;
+  width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
