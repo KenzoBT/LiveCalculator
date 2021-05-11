@@ -88,12 +88,21 @@
         <input id="left_rad" type='text' size=2></input>&nbsp;√&nbsp;<input id="right_rad" type='text' size=2></input>&nbsp;&nbsp;&nbsp;<input type='button' id='sender' onclick="sub_rad()"></input>
       </div>
     </div>
-    <div id="memoryTable">
-      <div class="memoryCell" id="m1"></div>
-      <div class="memoryCell" id="m2"></div>
-      <div class="memoryCell" id="m3"></div>
-      <div class="memoryCell" id="m4"></div>
-      <div class="memoryCell" id="m5"></div>
+    <div id="tables">
+      <div id="ipTable">
+        <div class="memoryCell" id="i1"></div>
+        <div class="memoryCell" id="i2"></div>
+        <div class="memoryCell" id="i3"></div>
+        <div class="memoryCell" id="i4"></div>
+        <div class="memoryCell" id="i5"></div>
+      </div>
+      <div id="memoryTable">
+        <div class="memoryCell" id="m1"></div>
+        <div class="memoryCell" id="m2"></div>
+        <div class="memoryCell" id="m3"></div>
+        <div class="memoryCell" id="m4"></div>
+        <div class="memoryCell" id="m5"></div>
+      </div>
     </div>
     <div id="ans" hidden>1</div>
     <div id="rad_on" hidden>0</div>
@@ -106,6 +115,12 @@
       socket.on('refresh cells', (data) => {
         for(let i = 0; i < data.length; i++){
           document.getElementById("m" + (i+1)).innerHTML = data[i]
+        }
+      })
+
+      socket.on('refresh ip', (data) => {
+        for(let i = 0; i < data.length; i++){
+          document.getElementById("i" + (i+1)).innerHTML = data[i]
         }
       })
 

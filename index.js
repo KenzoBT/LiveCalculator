@@ -9,6 +9,7 @@ const path = require('path')
 let port = process.env.PORT || 3000
 let counter = 0
 let cells = []
+let ips = []
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
@@ -20,15 +21,21 @@ io.on('connection', (socket) => {
 
   console.log('a user connected')
   socket.emit('refresh cells', cells)
+  socket.emit('refresh ip', ips)
 
   socket.on('add exp', (exp) => {
     //console.log('Counter++ request received')
-    cells.unshift(socket.request.connection.remoteAddress + "\t" + exp)
+    let ip = socket.request.connection.remoteAddress.split(':')[3]
+    ips.unshift(ip)
+    cells.unshift(exp)
     if(cells.length > 5){
       cells.pop()
+      ips.pop()
     }
     //console.log(cells)
+    console.log(ips)
     io.emit('refresh cells', cells)
+    io.emit('refresh ip', ips)
   })
 
   socket.on('disconnect', () => {
