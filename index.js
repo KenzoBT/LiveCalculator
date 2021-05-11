@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
 
   socket.on('add exp', (exp) => {
     //console.log('Counter++ request received')
-    cells.unshift(exp)
+    cells.unshift(socket.request.connection.remoteAddress + "\t" + exp)
     if(cells.length > 5){
       cells.pop()
     }
