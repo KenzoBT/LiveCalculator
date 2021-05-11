@@ -18,6 +18,8 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
 }
 
 .memoryCell {
@@ -26,10 +28,28 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  /*
   box-sizing: border-box;
   border-width: 1px;
   border-style: solid;
   border-color: white;
+  */
+}
+
+#m1{
+  color: rgba(255, 255, 255, 1);
+}
+#m2{
+  color: rgba(255, 255, 255, 0.8);
+}
+#m3{
+  color: rgba(255, 255, 255, 0.6);
+}
+#m4{
+  color: rgba(255, 255, 255, 0.4);
+}
+#m5{
+  color: rgba(255, 255, 255, 0.2);
 }
 
 #base{
@@ -37,7 +57,7 @@ body{
   height: 80vh;
   width: calc(80vh * 0.6);
   font-size: 5vh;
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 200;
   border-radius: 5vh;
   border-color: #a0a0a0;
@@ -66,7 +86,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Rubik';
+  font-family: 'Roboto';
   font-size: 4.2vh;
 }
 
