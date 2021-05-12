@@ -1,3 +1,7 @@
+// Calculator logic
+// Expressions are parsed to correctly evaluate results
+
+// Show intermediate input on calculator display (individual numbers)
 function display_show(x){
   if(document.querySelector("#rad_on").innerHTML == "1"){
     // alert("rad help is on");
@@ -25,7 +29,9 @@ function display_show(x){
   }
 }
 
+// Add operator symbols to calculator display + handle radicals / unary negation
 function operator(x){
+  // If radical is selected
   if(document.querySelector("#rad_on").innerHTML == "1"){
     // alert("rad helper is on!");
     var rad = document.querySelector("#rad_help");
@@ -36,7 +42,7 @@ function operator(x){
   else{
     document.querySelector("#ans").innerHTML = "0";
     var disp = document.querySelector("#row1");
-    if(x == 's'){ // root
+    if(x == 's'){ // radical
       var rad = document.querySelector("#rad_help");
       if(document.querySelector("#rad_on").innerHTML == "1"){
         rad.style.visibility = "hidden";
@@ -69,11 +75,13 @@ function operator(x){
       if(disp.innerHTML == "Error"){
         disp.innerHTML = "0";
       }
+      // Show the operator on the screen
       disp.innerHTML = disp.innerHTML + " " + x + " ";
     }
   }
 }
 
+// When C button is clicked, reset the calculator screen + reset intermediate cells
 function reset_disp(){
   if(document.querySelector("#rad_on").innerHTML == "1"){
     // alert("rad helper is on!");
@@ -88,11 +96,17 @@ function reset_disp(){
   }
 }
 
+// Parse expressions into their correct evaluation
 function exp_parser(){
+  // Set required decimal places
   var decimal_places = 4;
+  // Fetch the expression
   var expression = document.querySelector("#row1").innerHTML;
+  // Check for balanced parentheses
   if(bracketCoherence(expression)){
+    // Check if expression is missing operand
     expression = strayOperator(expression);
+    // Re-arrange three display slots
     document.querySelector("#row1").innerHTML = expression;
     document.querySelector("#row3").innerHTML = document.querySelector("#row2").innerHTML;
     document.querySelector("#row2").innerHTML = expression;
@@ -133,12 +147,14 @@ function exp_parser(){
   }
 }
 
+// Parse through whole string, evaluating brackets first, then operators by importance
 function parse_bit(str){
   var expression;
   if(str == "no_br"){
     expression = document.querySelector("#row1").innerHTML;
   }
   if(str == "br"){
+    // Save expression with brackets to an intermediate register (for display purposes)
     expression = document.querySelector("#bracket_register").innerHTML;
   }
   var type = ".";
@@ -576,6 +592,7 @@ function brackProc(str){
   return document.querySelector("#bracket_register").innerHTML;
 }
 
+// If expression is missing right-hand operand, remove last operator
 function strayOperator(str){
   var result = str;
   if(result.charAt(result.length - 1) == ' '){
@@ -584,96 +601,34 @@ function strayOperator(str){
   return result;
 }
 
+// Checks if expression has balanced parentheses
 function bracketCoherence(str){
-  // if brackets are coherent, return true
-  var noBrack = true;
-  for(var i = 0; i < str.length; i++){
-    if(str.charAt(i) == '(' || str.charAt(i) == ')'){
-      noBrack = false;
-      break;
+  let balance = 0
+  // Iterate over string to identify parentheses
+  for(let i = 0; i < str.length; i++){
+    if(str[i] == '('){
+      // If opening, add to balance
+      balance++
+    }
+    else if(str[i] == ')'){
+      // If closing AND balance is positive (AND non-zero)
+      if(balance > 0){
+        balance--
+      }
+      else{
+        // Balance is already broken
+        balance = -1
+        break
+      }
     }
   }
-  if(noBrack){ // if there are no brackets, return true
-    return true;
+  // If balance is exactly zero, then expression was balanced
+  if(balance == 0){
+    return true
   }
-  else{ // count bracks for coherence
-    // reduce string to only brackets
-    var only_bracks = "";
-    for(var i = 0; i < str.length; i++){
-      if(str.charAt(i) == '(' || str.charAt(i) == ')'){
-        only_bracks = only_bracks + str.charAt(i);
-      }
-    }
-    // alert(only_bracks);
-    // first count lefts and rights
-    var left_brack = 0;
-    var right_brack = 0;
-    for(var i = 0; i < only_bracks.length; i++){
-      if(only_bracks.charAt(i) == '('){
-        left_brack++;
-      }
-      else if(only_bracks.charAt(i) == ')'){
-        right_brack++;
-      }
-    }
-    if(left_brack == right_brack){
-      var extract = true;
-      while(extract){
-        var chosen = false;
-        var closed = false;
-        var curr_l = -1;
-        var curr_r = -1;
-        var skip = 0;
-        for(var i = 0; i < only_bracks.length; i++){
-          if(only_bracks.charAt(i) == '('){
-            if(chosen == false){
-              chosen = true;
-              curr_l = i;
-            }
-            else{
-              skip++;
-            }
-          }
-          if(only_bracks.charAt(i) == ')'){
-            if(chosen){
-              if(skip == 0){
-                curr_r = i;
-                closed = true;
-                break;
-              }
-              else{
-                skip--;
-              }
-            }
-          }
-        }
-        if(closed){
-          // remove curr_l and curr_r
-          // curr_l
-          var prev_l = only_bracks.substr(0, curr_l);
-          var aftr_l = only_bracks.substr(curr_l + 1);
-          only_bracks = prev_l + aftr_l;
-          // curr_r
-          curr_r--; // adapt index for erased curr_l character
-          var prev_r = only_bracks.substr(0, curr_r);
-          var aftr_r = only_bracks.substr(curr_r + 1);
-          only_bracks = prev_r + aftr_r;
-          // end if only_bracks is empty
-          if(only_bracks == ""){
-            extract = false;
-            return true;
-          }
-        }
-        else{
-          // alert("Closed bool error");
-          return false;
-        }
-      }
-    }
-    else{ // return error
-      alert("ERROR: OpenBrackets != CloseBrackets");
-      return false;
-    }
+  else{
+    alert("Parentheses are not balanced!")
+    return false
   }
 }
 
