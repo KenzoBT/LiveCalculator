@@ -5,7 +5,7 @@
     <title>Calculator</title>
     <script src="myScript1.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="./calc2.css">
+    <link type="text/css" rel="stylesheet" href="./calc3.css">
   </head>
   <body>
     <div id="base">
@@ -95,6 +95,11 @@
         <div class="memoryCell" id="i3"></div>
         <div class="memoryCell" id="i4"></div>
         <div class="memoryCell" id="i5"></div>
+        <div class="memoryCell" id="i6"></div>
+        <div class="memoryCell" id="i7"></div>
+        <div class="memoryCell" id="i8"></div>
+        <div class="memoryCell" id="i9"></div>
+        <div class="memoryCell" id="i10"></div>
       </div>
       <div id="memoryTable">
         <div class="memoryCell" id="m1"></div>
@@ -102,6 +107,11 @@
         <div class="memoryCell" id="m3"></div>
         <div class="memoryCell" id="m4"></div>
         <div class="memoryCell" id="m5"></div>
+        <div class="memoryCell" id="m6"></div>
+        <div class="memoryCell" id="m7"></div>
+        <div class="memoryCell" id="m8"></div>
+        <div class="memoryCell" id="m9"></div>
+        <div class="memoryCell" id="m10"></div>
       </div>
     </div>
     <div id="ans" hidden>1</div>
@@ -115,6 +125,7 @@
       socket.on('refresh cells', (data) => {
         for(let i = 0; i < data.length; i++){
           document.getElementById("m" + (i+1)).innerHTML = data[i]
+          document.getElementById("m" + (i+1)).style.color = "rgba(255,255,255," + (1 - (0.07 * i)) + ")"
         }
       })
 

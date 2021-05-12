@@ -26,9 +26,12 @@ io.on('connection', (socket) => {
   socket.on('add exp', (exp) => {
     //console.log('Counter++ request received')
     let ip = socket.request.connection.remoteAddress.split(':')[3]
+    if(typeof ip == "undefined" ){
+      ip = "172.168.1.1"
+    }
     ips.unshift(ip)
     cells.unshift(exp)
-    if(cells.length > 5){
+    if(cells.length > 10){
       cells.pop()
       ips.pop()
     }

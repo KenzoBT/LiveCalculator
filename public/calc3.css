@@ -3,23 +3,23 @@ body{
   padding: 0;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items:center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-color: #101010;
   color: #a0a0a0;
 }
 
 #tables {
   margin: 0 0 20px 0;
-  height: 20vh;
-  width: calc(80vh * 0.6);
+  height: 80vh;
+  width: calc(80vh * 0.4);
   display: flex;
   justify-content: center;
 }
 
 #ipTable {
-  width: 40%;
+  width: 25%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -31,18 +31,18 @@ body{
 }
 
 #memoryTable {
-  width: 60%;
+  width: 75%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   font-family: 'Roboto', sans-serif;
-  font-size: 3vh;
+  font-size: 2.5vh;
 }
 
 .memoryCell {
-  height: 20%;
+  height: 10%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -58,6 +58,22 @@ body{
 #ipTable .memoryCell {
     display: flex;
     justify-content: flex-end;
+}
+
+#m1{
+  color: rgba(255, 255, 255, 1);
+}
+#m2{
+  color: rgba(255, 255, 255, 0.8);
+}
+#m3{
+  color: rgba(255, 255, 255, 0.6);
+}
+#m4{
+  color: rgba(255, 255, 255, 0.4);
+}
+#m5{
+  color: rgba(255, 255, 255, 0.2);
 }
 
 #base{
